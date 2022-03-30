@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     if event['currentIntent']['slots']['JenkinsJobName'] == "prod":
         server = jenkins.Jenkins('http://ip:8080/', username='', password='')
         server.build_job('deploy_pizza_to_prod_app_server',
-                     {'ip_address': '34.198.25.2', 'deploy_db': 'True', 'deploy_backend': 'True',
+                     {'ip_address': 'ip', 'deploy_db': 'True', 'deploy_backend': 'True',
                       'deploy_frontend': 'True'})
     data = "Build " + event['currentIntent']['slots']['JenkinsJobName'] + " Triggered"
     return close(event['sessionAttributes'], 'Fulfilled', {'contentType': 'PlainText', 'content': data})
